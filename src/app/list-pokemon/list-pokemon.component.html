@@ -1,0 +1,42 @@
+<ng-container *ngIf="!formulaireNouveauPokemon && !grillePokemon">
+  <div class="d-flex flex-row">
+    <h2 class="col text-center">{{'liste.pokemon.titre' | translate}}</h2>
+    <button class="flex-column-reverse btn btn-dark me-lg-5" type="submit" (click)="ouvrirGrille()">
+      {{'liste.pokemon.label.bouton.grille' | translate}}
+    </button>
+    <button class="flex-column-reverse btn btn-dark" type="submit" (click)="ouvrirFormulaireNouveauPokemon()">
+      {{'liste.pokemon.label.bouton.nouveau.pokemon' | translate}}
+    </button>
+  </div>
+  <div class="d-flex flex-row">
+    <ng-container *ngIf="$listePokemon | async as listePokemon">
+      <table class="table table-striped table-bordered border border-4 border-dark  mt-5">
+        <thead>
+        <th>{{'liste.pokemon.table.label.numero' | translate}}</th>
+        <th>{{'liste.pokemon.table.label.nom' | translate}}</th>
+        <th>{{'liste.pokemon.table.label.types' | translate}}</th>
+        <th>{{'liste.pokemon.table.label.taille' | translate}}</th>
+        <th>{{'liste.pokemon.table.label.poids' | translate}}</th>
+        <th>{{'liste.pokemon.table.label.evolution' | translate}}</th>
+        </thead>
+        <tbody  *ngFor="let pokemon of listePokemon">
+        <tr>
+          <td>{{pokemon.numero}}</td>
+          <td>{{pokemon.nom | uppercase}}</td>
+          <td>{{pokemon.type.nom | uppercase}}</td>
+          <td>{{pokemon.taille}}</td>
+          <td>{{pokemon.poids}}</td>
+          <td>{{pokemon.evolution | uppercase}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</ng-container>
+<app-formulaire-nouveau-pokemon *ngIf="formulaireNouveauPokemon"
+                                (nouveauPokemonEvent)="enregisterNouveauPokemon($event)"
+                                (annulerEnregistrementPokemonEvent)="annulerEnregistrmeent($event)">
+</app-formulaire-nouveau-pokemon>
+<app-grille-pokemon *ngIf="grillePokemon"
+                    [$listePokemonWithImage]="$listePokemonithImage"
+                    (retourAccueilEvent)="retourListePokemon()"></app-grille-pokemon>

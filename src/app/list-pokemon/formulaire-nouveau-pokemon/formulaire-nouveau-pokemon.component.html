@@ -1,0 +1,97 @@
+<form class="form-row g-3 p-2" [formGroup]="formulairePokemon" (ngSubmit)="validerNouveauPokemon()">
+
+  <h2>{{'formulaire.pokemon.titre' | translate}}</h2>
+
+  <div class="col-md-6 mt-5">
+    <label for="numero" class="form-label">{{'formulaire.pokemon.label.numero' | translate}}</label>
+    <input id="numero" name="numero" class="form-control" type="text" formControlName="numero">
+    <div *ngIf="numero.errors?.['required']" class="alert alert-danger">
+      <span>{{'formulaire.pokemon.erreur.numero.requis'| translate}}</span>
+    </div>
+    <div *ngIf="numero.errors?.['maxlength']" class="alert alert-danger">
+      <span>{{'formulaire.pokemon.erreur.numero.max'| translate : {nb: nbMaxNumeroAutorise}  }}</span>
+    </div>
+    <div *ngIf="numero.errors?.['pattern']" class="alert alert-danger">
+      <span>{{'formulaire.pokemon.erreur.numero.caractere'| translate}}</span>
+    </div>
+    <div *ngIf="numero.hasError('elementExisteDeja')"
+         class="alert alert-danger">
+      <span>{{'formulaire.pokemon.erreur.numero.existant'| translate}}</span>
+    </div>
+  </div>
+
+
+  <div class="col-md-6 mt-5">
+    <label for="nom" class="form-label">{{'formulaire.nouveau.type.label.nom' | translate}}</label>
+    <input id="nom" name="nom" class="form-control" type="text" formControlName="nom">
+    <div *ngIf="nom.errors?.['required']" class="alert alert-danger">
+      <span>{{'formulaire.pokemon.erreur.nom.requis'| translate}}</span>
+    </div>
+    <div *ngIf="nom.errors?.['pattern']" class="alert alert-danger">
+      <span>{{'formulaire.pokemon.erreur.nom.caractere'| translate}}</span>
+    </div>
+    <div *ngIf="nom.hasError('elementExisteDeja')"
+         class="alert alert-danger">
+      <span>{{'formulaire.pokemon.erreur.nom.existant'| translate}}</span>
+    </div>
+  </div>
+
+  <ng-container *ngIf="$listeTypesExistants | async as listeType">
+    <div class="col-md-3 mt-5">
+      <label for="type" class="form-label">{{'formulaire.pokemon.label.combobox.type' | translate}}</label>
+      <select   class="form-select" id="type" aria-label="type" formControlName="type" >
+        <option selected></option>
+        <option *ngFor="let type of listeType" value="{{type.id}}">{{type.nom}}</option>
+      </select>
+      <div *ngIf="type.errors?.['required']" class="alert alert-danger">
+        <span>{{'formulaire.pokemon.erreur.type.requis'| translate}}</span>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="col-md-6 mt-5">
+    <label for="image" class="form-label">{{'formulaire.pokemon.label.image' | translate}}</label>
+    <app-upload id="image" (uploadEvent)="uploadFile($event)"></app-upload>
+  </div>
+
+
+  <div class="row mt-5">
+    <div class="col-md-2">
+      <label for="poids" class="form-label">{{'formulaire.pokemon.label.poids' | translate}}</label>
+      <input id="poids" name="poids" class="form-control" type="text" formControlName="poids">
+      <div *ngIf="poids.errors?.['pattern']" class="alert alert-danger">
+        <span>{{'formulaire.pokemon.erreur.poids.critere'| translate}}</span>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <label for="taille" class="form-label">{{'formulaire.pokemon.label.taille' | translate}}</label>
+      <input id="taille" name="taille" class="form-control" type="text" formControlName="taille" [maxLength]="100">
+      <div *ngIf="taille.errors?.['pattern']" class="alert alert-danger">
+        <span>{{'formulaire.pokemon.erreur.taille.critere'| translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="$listePokemonExistants | async as listePokemon">
+    <div class="col-md-3 mt-5">
+      <label for="evolution" class="form-label">{{'formulaire.pokemon.label.combobox.evolution' | translate}}</label>
+      <select class="form-select" id="evolution" aria-label="evolution" formControlName="evolution">
+        <option selected></option>
+        <option *ngFor="let pokemon of listePokemon" value="{{pokemon.id}}">{{pokemon.nom}}</option>
+      </select>
+    </div>
+  </ng-container>
+
+  <div class="row">
+    <div class="col-2 mt-5">
+      <button type="submit"  class="btn btn-dark">
+        {{'formulaire.nouveau.type.label.bouton.valider' | translate}}
+      </button>
+    </div>
+    <div class="col-2 mt-5">
+      <button type="button"  class="btn btn-dark" (click)="annulerEnregistrementPokemon()">
+        {{'formulaire.nouveau.type.label.bouton.annuler' | translate}}
+      </button>
+    </div>
+  </div>
+</form>

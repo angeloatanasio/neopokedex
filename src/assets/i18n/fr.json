@@ -1,0 +1,53 @@
+{
+  "sidebar.nav.types": "Types",
+  "liste.type": {
+    "titre": "Liste des types",
+    "label.bouton.nouveau.type": "Nouveau type",
+    "table.label.nom": "Nom",
+    "table.label.date.creation": "Date de création"
+  },
+  "formulaire.nouveau.type": {
+    "label.nom": "Nom :",
+    "label.bouton.valider": "Valider",
+    "label.bouton.annuler": "Annuler",
+    "titre": "Création de type"
+  },
+  "sidebar.nav.pokemon": "Pokemons",
+  "liste.pokemon": {
+    "titre": "Liste des pokemons",
+    "table.label.numero" : "Numéro",
+    "table.label.nom" : "Nom",
+    "table.label.types" : "Type",
+    "table.label.taille" : "Taille",
+    "table.label.poids" : "Poids",
+    "table.label.evolution" : "Evolution",
+    "label.bouton.grille": "Grille",
+    "label.bouton.nouveau.pokemon": "Nouveau pokemon"
+  },
+  "formulaire.pokemon": {
+    "titre": "Création de pokemon",
+    "label.numero": "Numéro :",
+    "label.image": "Image :",
+    "label.combobox.type": "Type :",
+    "label.poids": "Poids :",
+    "label.taille": "Taille :",
+    "label.combobox.evolution": "Evolution :",
+    "erreur": {
+      "nom.existant": "Nom déjà existant",
+      "numero.existant": "Numéro déjà existant",
+      "type.requis" : "Type requis",
+      "numero.requis" : "Numéro requis",
+      "nom.requis" : "Nom requis",
+      "numero.caractere": "Seulement des chiffres",
+      "numero.max": "Max {{nb}} chiffres",
+      "nom.caractere" : "Seulement des lettres et les caractères suivant : é ' à ç ^",
+      "poids.critere": "Que du numérique accepté avec 1 chiffre après la virgule pour le poids",
+      "taille.critere" : "Que du numérique accepté pour la taille avec 2 chiffre après la virgule"
+      }
+  },
+  "grille.pokemon": {
+    "titre": "Grille de pokemon",
+    "label.nom": "Nom",
+    "retour" : "Retour"
+  }
+}

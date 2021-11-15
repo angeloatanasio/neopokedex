@@ -1,0 +1,10 @@
+<div class="d-flex flex-row">
+  <h2 class="col text-center">{{'grille.pokemon.titre' | translate}}</h2>
+  <button type="button" class="flex-column-reverse btn btn-dark" (click)="retourAccueil()">{{'grille.pokemon.retour' | translate}}</button>
+</div>
+<ng-container *ngFor="let pokemon of $listePokemonWithImage | async">
+  <app-card [pokemon]="pokemon">
+  </app-card>
+</ng-container>
+
+

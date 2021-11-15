@@ -1,0 +1,32 @@
+
+<ng-container *ngIf="!nouveauType">
+  <div class="d-flex flex-row">
+    <h2 class="col text-center">{{'liste.type.titre' | translate}}</h2>
+    <button class="flex-column-reverse btn btn-dark" type="submit" (click)="ouvrirFormulaireNouveauType()">
+      {{'liste.type.label.bouton.nouveau.type' | translate}}
+    </button>
+  </div>
+  <ng-container *ngIf="$listType | async as listType">
+    <div class="d-flex flex-row">
+      <table class="table table-bordered table-striped border border-4 border-dark mt-5">
+        <thead>
+        <th>{{'liste.type.table.label.nom' | translate}}</th>
+        <th>{{'liste.type.table.label.date.creation' | translate}}</th>
+        </thead>
+        <tbody  *ngFor="let type of listType">
+        <tr>
+          <td>{{type.nom | uppercase}}</td>
+          <td>{{type.dateCreation | date :'dd/MM/yyyy HH:mm:ss' : 'fr'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+</ng-container>
+
+<app-formulaire-nouveau-type *ngIf="nouveauType"
+                             (annulerEnregistrementEvent)="annuler($event)"
+                             (nouveauTypeEvent)="enregistrerNouveauType($event)">
+</app-formulaire-nouveau-type>
+
+

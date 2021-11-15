@@ -1,0 +1,35 @@
+
+<form class="row g-3 p-4" [formGroup]="formulaireNouveauType" (ngSubmit)="validerNouveauType()">
+  <div class="mt-5">
+    <h2>{{'formulaire.nouveau.type.titre' | translate}}</h2>
+  </div>
+  <div class="col-md-6">
+    <label for="nom" class="form-label">{{'formulaire.nouveau.type.label.nom' | translate}}</label>
+    <input id="nom" name="nom" class="form-control" type="text" formControlName="nouveauNomType" [maxLength]="100">
+    <div *ngIf="nouveauNomType.errors?.['pattern']" class="alert alert-danger">
+      <span>{{'formulaire.pokemon.erreur.nom.caractere' | translate}}</span>
+    </div>
+    <div *ngIf="nouveauNomType.errors?.['required']" class="alert alert-danger">
+      <span>{{'formulaire.pokemon.erreur.nom.requis' | translate}}</span>
+    </div>
+    <div *ngIf="nouveauNomType.hasError('elementExisteDeja')"
+         class="alert alert-danger">
+      <span>{{'formulaire.pokemon.erreur.nom.existant' | translate}}</span>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-2">
+      <button type="submit" class="btn btn-dark">
+        {{'formulaire.nouveau.type.label.bouton.valider' | translate}}
+      </button>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-dark" type="button" (click)="annulerEnregistrement()">
+        {{'formulaire.nouveau.type.label.bouton.annuler' | translate}}
+      </button>
+    </div>
+  </div>
+</form>
+
+
+
