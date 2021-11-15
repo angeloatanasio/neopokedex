@@ -1,5 +1,5 @@
-import {Component, EventEmitter, forwardRef, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {PokemonFacade} from "../pokemon.facade";
 import {TypeFacade} from "../../list-type/type.facade";
 import {Observable} from "rxjs";
@@ -11,17 +11,10 @@ import {PokemonApi} from "../pokemon-api";
 @Component({
   selector: 'app-formulaire-nouveau-pokemon',
   templateUrl: './formulaire-nouveau-pokemon.component.html',
-  styleUrls: ['./formulaire-nouveau-pokemon.component.scss'],
-  providers:[
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormulaireNouveauPokemonComponent),
-      multi: true
-    },
-  ]
+  styleUrls: ['./formulaire-nouveau-pokemon.component.scss']
 
 })
-export class FormulaireNouveauPokemonComponent implements OnInit, ControlValueAccessor{
+export class FormulaireNouveauPokemonComponent implements OnInit{
 
   formulairePokemon : FormGroup = new FormGroup({});
   numero : FormControl;
@@ -48,7 +41,6 @@ export class FormulaireNouveauPokemonComponent implements OnInit, ControlValueAc
     this.type  = new FormControl('', Validators.required);
     this.image  = new FormControl('');
     this.poids  = new FormControl(0,  Validators.pattern('^[0-9]+(([\\.\\,])+[0-9]{1,1})?$'));
-    // this.poids  = new FormControl(0);
     this.taille = new FormControl(0, Validators.pattern('^[0-9]+(([\\.\\,])+[0-9]{1,2})?$'));
     this.evolution  = new FormControl('');
   }
@@ -97,16 +89,5 @@ export class FormulaireNouveauPokemonComponent implements OnInit, ControlValueAc
 
   uploadFile(uploadFile: File) {
     this.fichierASauvegarder = uploadFile;
-  }
-
-
-  registerOnChange(fn: any): void {}
-
-  registerOnTouched(fn: any): void {}
-
-  setDisabledState(isDisabled: boolean): void {}
-
-  writeValue(obj: any): void {
-    console.log('formulaire Nouveau pokemon component -> write value : ', obj);
   }
 }

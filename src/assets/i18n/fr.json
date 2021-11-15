@@ -1,5 +1,6 @@
 {
   "sidebar.nav.types": "Types",
+  "page.non.trouve": "Cette page n'existe pas !",
   "liste.type": {
     "titre": "Liste des types",
     "label.bouton.nouveau.type": "Nouveau type",
